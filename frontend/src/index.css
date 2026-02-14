@@ -1,0 +1,112 @@
+:root{
+  --lav-start: #D6C8FF;
+  --lav-end:   #A777E3;
+  --lav-solid: #7C67F0;
+
+  --bg-soft: #afa4d7;
+  --bg-white: #e0c2c2;
+
+  --text-dark: #3A2E63;
+  --text-muted: #6E6B7A;
+}
+
+/* global */
+body{
+  background: var(--bg-soft);
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.home-description {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin-bottom: 8px;
+}
+
+
+/* HOME LAYOUT FIX */
+.home-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content center vertically */
+.home-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+/* gradient text reusable */
+.gradient-text{
+  background: linear-gradient(90deg, var(--lav-start), var(--lav-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* page title */
+.page-title{
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+
+/* quote */
+.quote-section {
+  margin-top: 30px;
+}
+
+.quote-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dark);
+  font-style: italic;
+}
+
+.quote-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* lavender login box */
+.lavender-box {
+  background: linear-gradient(135deg, var(--lav-start), var(--lav-end));
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  max-width: 220px;
+  width: 100%;
+  margin: 22px auto 0;
+  padding: 14px 18px;
+  box-shadow: 0 6px 18px rgba(124,103,240,0.25);
+}
+
+.lavender-box:hover {
+  transform: translateY(-2px);
+}
+
+
+.login-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+
+/* footer */
+.footer {
+  text-align: center;
+  padding: 15px 10px;
+}
+
+.footer-desc {
+  font-size: 13px;
+  color: gray;
+}

@@ -1,0 +1,137 @@
+.dashboard {
+  padding: 24px;
+}
+
+/* Hero section */
+.dashboard-hero {
+  background: linear-gradient(135deg, #f6e4f8, #ffffff);
+  color: rgb(41, 39, 39);
+  padding: 32px;
+  margin-top: 40px;
+  border-radius: 16px;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.dashboard-hero h1 {
+  margin-bottom: 8px;
+}
+
+.dashboard-hero p {
+  opacity: 0.9;
+  margin-bottom: 16px;
+}
+
+.primary-btn {
+  background: rgb(255, 255, 255);
+  color: #4f4f4f;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.primary-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Section */
+.section-title {
+  margin-bottom: 12px;
+}
+
+/* PG preview cards */
+.pg-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  animation: slideUp 0.8s ease;
+}
+
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ===== BOOK NOW BUTTON STYLE ===== */
+.book-btn {
+margin-top: 20px;
+padding: 12px 25px;
+font-size: 16px;
+font-weight: bold;
+border: none;
+border-radius: 30px;
+background: linear-gradient(45deg, #f3e7ff, #2575fc);
+color: white;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Hover animation */
+.book-btn:hover {
+transform: scale(1.08);
+box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Click animation */
+.book-btn:active {
+transform: scale(0.95);
+}
+
+/* ===== CARD ANIMATION ===== */
+.detail-card {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card hover effect */
+.detail-card:hover {
+transform: translateY(-8px);
+box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ===== FADE-IN ANIMATION ===== */
+.anim {
+opacity: 0;
+animation: fadeInUp 0.6s ease forwards;
+}
+
+.a1 { animation-delay: 0.2s; }
+.a2 { animation-delay: 0.4s; }
+.a3 { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+.primary-btn {
+  margin-top: 12px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  background: #6a5acd;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,88 @@
+/* ===== PG CARD ===== */
+.pg-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Lift effect on hover */
+.pg-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+}
+
+/* Header section */
+.pg-header {
+  margin-bottom: 12px;
+}
+
+/* PG Name */
+.pg-name {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2b7cff;
+}
+
+/* Location */
+.pg-location {
+  color: #666;
+  font-size: 14px;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Optional small divider */
+.pg-divider {
+  height: 1px;
+  background: #eee;
+  margin: 10px 0;
+}
+
+/* ===== VIEW BUTTON ===== */
+.view-btn {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2b7cff, #6a5acd);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+}
+
+/* Button hover */
+.view-btn:hover {
+  background: linear-gradient(135deg, #0b5ed7, #5a4bcf);
+  transform: translateY(-1px);
+}
+
+/* Button active click */
+.view-btn:active {
+  transform: scale(0.98);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .pg-card {
+    padding: 14px;
+  }
+
+  .pg-name {
+    font-size: 18px;
+  }
+
+  .view-btn {
+    padding: 9px 12px;
+  }
+}

@@ -1,0 +1,128 @@
+.booking-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+    padding: 20px;
+  }
+  
+  /* Glass card */
+  .booking-card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    padding: 28px;
+    border-radius: 22px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    text-align: center;
+    animation: popIn 0.6s ease;
+  }
+  
+  .booking-card h2 {
+    margin-bottom: 6px;
+  }
+  
+  .booking-sub {
+    opacity: 0.8;
+    margin-bottom: 16px;
+  }
+  
+  /* Form fields */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 12px;
+  }
+  
+  .form-group label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    opacity: 0.8;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 14px;
+  }
+  
+  /* Button */
+  .confirm-btn {
+    margin-top: 14px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 6px 16px rgba(37, 117, 252, 0.35);
+  }
+  
+  .confirm-btn:not(:disabled):hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+  
+  
+  .confirm-btn:not(:disabled):active {
+    transform: scale(0.97);
+  }
+  
+  
+  /* Simple animation */
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .error-text {
+    color: #e63946;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  
+  /* Disabled button style */
+  .disabled-btn {
+    background: #bdbdbd !important;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  .booking-active {
+    background: #bdbdbd !important;
+    cursor: not-allowed;
+    animation: pulse 1s infinite;
+  }
+  .confirm-btn:disabled {
+    background: #bdbdbd !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
+    opacity: 0.8;
+  }
+  
+  
+  /* simple breathing animation */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.03);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  

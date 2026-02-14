@@ -1,0 +1,215 @@
+/* PAGE */
+.pg-detail-page {
+    min-height: 100vh;
+    padding: 24px;
+    background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+  }
+  
+  /* HERO */
+  .pg-hero {
+    padding: 28px;
+    border-radius: 22px;
+    margin-bottom: 32px;
+    animation: heroPop 0.7s ease;
+  }
+  
+  .pg-hero h1 {
+    font-size: 28px;
+    margin-bottom: 6px;
+  }
+  
+  .sub {
+    opacity: 0.8;
+  }
+  
+  .rent-chip {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background:  #db83e5;
+    color: white;
+    font-weight: 600;
+  }
+  
+  /* GLASS EFFECT */
+  .glass {
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  }
+  
+  /* GRID */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  
+  /* CARDS */
+  .detail-card {
+    background: white;
+    padding: 22px;
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .detail-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.14);
+  }
+  
+  .detail-card h3 {
+    margin-bottom: 12px;
+  }
+  
+  .detail-card p {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+    opacity: 0.85;
+  }
+  
+  .detail-card span {
+    font-weight: 600;
+  }
+  
+  /* ANIMATIONS */
+  .anim {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cardIn 0.6s ease forwards;
+  }
+  
+  .a1 { animation-delay: 0.1s; }
+  .a2 { animation-delay: 0.25s; }
+  .a3 { animation-delay: 0.4s; }
+  
+  @keyframes heroPop {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes cardIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  /* ===== SMALL BOOK NOW BUTTON (PG DETAILS PAGE) ===== */
+.book-btn {
+  margin-top: 16px;
+  align-self: center;      /* keeps it neat in grid */
+  padding: 6px 14px;       /* small size */
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;    /* pill shape to match rent-chip */
+  background: linear-gradient(45deg, #3b6df7, #bad0f5);
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Hover animation */
+.book-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Click animation */
+.book-btn:active {
+  transform: scale(0.97);
+}
+/* ==== NEW CLEAN LAYOUT ==== */
+.pg-detail-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 10px;
+}
+
+/* Tighter grid (less spacious) */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;   /* reduced gap */
+}
+
+/* Bottom button container */
+.book-bottom {
+  text-align: center;
+  margin-top: 28px;
+}
+
+/* Smaller, cleaner button */
+.book-btn {
+  padding: 8px 18px;
+  font-size: 14px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(45deg, #3b6df7, #bad0f5);
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+}
+
+.book-btn:hover {
+  transform: scale(1.05);
+}
+
+.book-btn:active {
+  transform: scale(0.97);
+}
+/* ========== CLEANER LAYOUT ========== */
+.pg-detail-wrapper {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 16px 8px;   /* reduced empty space */
+}
+
+/* Tighter, modern grid */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;  /* much cleaner spacing */
+}
+
+/* ========== BOOK BUTTON (ATTRACTIVE + COMPACT) ========== */
+.book-bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.book-btn {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 6px 16px rgba(37, 117, 252, 0.35);
+}
+
+/* Soft glow hover */
+.book-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0px 10px 22px rgba(37, 117, 252, 0.45);
+}
+
+/* Smooth press */
+.book-btn:active {
+  transform: scale(0.97);
+}

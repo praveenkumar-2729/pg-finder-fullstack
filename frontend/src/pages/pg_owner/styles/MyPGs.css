@@ -1,0 +1,209 @@
+.my-pgs-container {
+  padding: 20px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 26px;
+  color: #333;
+}
+
+/* ===== GRID ===== */
+.pg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* ===== PG CARD ===== */
+.pg-card {
+  background: linear-gradient(135deg, #e98ced, #ededf6);
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+
+  animation: cardFadeUp 0.6s ease forwards;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* keeps buttons aligned */
+}
+
+.pg-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.pg-name {
+  margin-bottom: 8px;
+  font-size: 20px;
+  color: #222;
+}
+
+.pg-location {
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.pg-detail {
+  margin: 6px 0 10px;
+  color: #444;
+}
+
+/* ===== ACTION BUTTON ROW ===== */
+.pg-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap; /* prevents overflow on small screens */
+}
+
+/* EDIT BUTTON */
+.edit-btn {
+  flex: 1;               /* equal width */
+  min-width: 90px;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #f2e3ff;
+}
+
+.edit-btn:hover {
+  background-color: #c47aba;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+  flex: 1;
+  min-width: 90px;
+  background-color: #f6645a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+/* MANAGE BUTTON */
+.manage {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgb(230, 131, 230);
+  color: rgb(254, 252, 255);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.manage:hover {
+  background: rgb(116, 110, 116);
+  color: white;
+}
+
+/* EMPTY STATE */
+.empty-text {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* ANIMATION */
+@keyframes cardFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* ===== SMALL CIRCLE VIEW BUTTON (FIX OVERLAP) ===== */
+.icon-view-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #2b7cff;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* hover effect */
+.icon-view-btn:hover {
+  transform: scale(1.05);
+}
+
+/* align right neatly */
+.pg-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+
+  .my-pgs-container {
+    padding: 12px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .pg-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pg-actions {
+    justify-content: space-between;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 8px 10px;
+  }
+}
+.pg-gender {
+  margin: 6px 0;
+}
+
+.gender-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Boys */
+.gender-badge.boys {
+  background: #2196f3;
+}
+
+/* Girls */
+.gender-badge.girls {
+  background: #e91e63;
+}
+
+/* Both */
+.gender-badge.both {
+  background: #4caf50;
+}

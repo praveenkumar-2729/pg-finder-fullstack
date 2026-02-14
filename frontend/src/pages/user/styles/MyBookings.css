@@ -1,0 +1,89 @@
+.mybookings-page {
+    padding: 24px;
+    background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+    min-height: 100vh;
+  }
+  
+  .mb-title {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  .no-bookings {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  
+  .bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  
+  .booking-card {
+    background: white;
+    padding: 18px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  
+  .booking-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  }
+  
+  .pg-title {
+    margin-bottom: 10px;
+    color: #2b2b2b;
+  }
+  
+  .booking-info p {
+    margin: 6px 0;
+  }
+  
+  .status {
+    margin-left: 8px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .status.CONFIRMED {
+    background: #e6f7e6;
+    color: #1f7a1f;
+  }
+  
+  .status.CANCELLED {
+    background: #ffe6e6;
+    color: #af3c3c;
+  }
+  
+  .cancel-btn {
+    margin-top: 12px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(45deg, #bc1c1c, #f98d8d);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  .cancel-btn:not(:disabled):hover {
+    transform: scale(1.05);
+  }
+  
+  .cancel-btn:disabled {
+    background: #bdbdbd !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+    opacity: 0.8;
+  }
+  

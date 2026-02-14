@@ -1,0 +1,176 @@
+/* ======= MAIN CONTAINER ======= */
+.my-pgs-container {
+    padding: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* Page title */
+  .page-title {
+    text-align: center;
+    margin: 12px 0 20px;
+  }
+  
+
+  
+  /* ======= GRID LAYOUT ======= */
+  .pg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  
+  /* ======= PG CARD ======= */
+  .pg-card {
+    background: white;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* hover lift */
+  .pg-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* PG Name */
+  .pg-name {
+    margin: 0 0 6px 0;
+    color: #2b7cff;
+  }
+  
+  /* Location */
+  .pg-location {
+    color: gray;
+    font-size: 14px;
+    margin: 4px 0;
+  }
+  
+  /* Status */
+  .pg-detail {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+/* ======= ACTION BUTTONS ======= */
+.pg-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;   /* 👉 align right neatly */
+    align-items: center;
+  }
+  
+  /* ===== ICON-ONLY BUTTON SYSTEM ===== */
+  .icon-btn {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Tooltip text */
+  .icon-btn::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -32px;
+    background: black;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: 0.2s ease-in-out;
+    pointer-events: none;
+  }
+  
+  /* Show text on hover */
+  .icon-btn:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* === MAKE EDIT & DELETE ALSO ROUND ICONS === */
+  .edit-btn,
+  .delete-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Button colors */
+  .edit-btn {
+    background: #28a745;
+    color: white;
+  }
+  
+  .delete-btn {
+    background: red;
+    color: white;
+  }
+  
+  /* ===== FORCE ICON SHAPE (OVERRIDE OLD STYLES) ===== */
+.pg-actions .edit-btn,
+.pg-actions .delete-btn {
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  max-width: 38px !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+  
+  
+  /* Empty state */
+  .empty-text {
+    text-align: center;
+    color: gray;
+    margin-top: 20px;
+  }
+  
+  /* ======= MOBILE RESPONSIVE ======= */
+  @media (max-width: 600px) {
+  
+    .my-pgs-container {
+      padding: 12px;
+    }
+  
+    .pg-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .pg-card {
+      padding: 12px;
+    }
+  
+    .pg-actions {
+      justify-content: space-between; /* 👉 better spacing on mobile */
+    }
+  
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      font-size: 16px;
+    }
+  }
+  
