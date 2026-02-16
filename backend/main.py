@@ -15,10 +15,15 @@ Base.metadata.create_all(bind=engine)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://your-frontend-url.onrender.com"],
+    allow_origins=[
+        "http://localhost:5173",  # local dev
+        "https://pg-finder-frontend.onrender.com"  # your real frontend URL
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 # Include routers
