@@ -15,14 +15,12 @@ Base.metadata.create_all(bind=engine)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "https://pg-finder-fullstack-2.onrender.com"
-    ],
+    allow_origins=["*"],  # TEMP fix
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 
 
