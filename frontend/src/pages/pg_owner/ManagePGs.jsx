@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./styles/ManagePGs.css"; // reuse your grid styles
 import toast from "react-hot-toast";
 import Button from "../../components/Button";
+import BASE_URL from "../../api";
 
 export default function ManagePGs() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function ManagePGs() {
       return;
     }
 
-    fetch(`http://127.0.0.1:8000/pgowner/my-pgs/${accountId}`)
+    fetch(`${BASE_URL}/pgowner/my-pgs/${accountId}`)
       .then(async (res) => {
         const data = await res.json();
 
@@ -41,7 +42,7 @@ export default function ManagePGs() {
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/pgowner/delete-pg/${pgId}`,
+        `${BASE_URL}/pgowner/delete-pg/${pgId}`,
         { method: "DELETE" }
       );
 

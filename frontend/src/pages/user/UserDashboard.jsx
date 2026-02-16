@@ -4,6 +4,7 @@ import PGCard from "./PGCard";
 import "./styles/UserDashboard.css";
 import "./styles/Filter.css";
 import FilterPanel from "./FilterPanel";
+import BASE_URL from "../../api";
 
 function UserDashboard() {
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ function UserDashboard() {
   // LOAD PREVIEW
   // -----------------------------
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/user/pgs/preview")
+    fetch(`${BASE_URL}/user/pgs/preview`)
       .then(res => res.json())
       .then(data => {
         setPgs(Array.isArray(data) ? data : []);
@@ -94,7 +95,7 @@ function UserDashboard() {
   const loadAllPGs = () => {
     setLoading(true);
 
-    fetch("http://127.0.0.1:8000/user/pgs")
+    fetch(`${BASE_URL}/user/pgs`)
       .then(res => res.json())
       .then(data => {
         setPgs(Array.isArray(data) ? data : []);

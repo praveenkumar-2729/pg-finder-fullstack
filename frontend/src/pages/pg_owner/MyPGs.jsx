@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./styles/MyPGs.css";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../api";
 
 
 function MyPGs() {
@@ -16,7 +17,7 @@ function MyPGs() {
       return;
     }
 
-    fetch(`http://127.0.0.1:8000/pgowner/my-pgs/${accountId}`)
+    fetch(`${BASE_URL}/pgowner/my-pgs/${accountId}`)
       .then(async (res) => {
         const data = await res.json();
 

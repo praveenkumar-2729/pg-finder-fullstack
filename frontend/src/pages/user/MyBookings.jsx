@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import "./styles/MyBookings.css";
+import BASE_URL from "../../api";
 
 function MyBookings() {
   const [bookings, setBookings] = useState([]);
@@ -9,7 +10,7 @@ function MyBookings() {
   useEffect(() => {
     const userEmail = localStorage.getItem("email");
 
-    fetch(`http://127.0.0.1:8000/bookings/user/${userEmail}`)
+    fetch(`${BASE_URL}/bookings/user/${userEmail}`)
       .then(res => res.json())
       .then(data => setBookings(data || []));
   }, []);
@@ -27,7 +28,7 @@ function MyBookings() {
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/bookings/${bookingId}/cancel`,
+        `${BASE_URL}/bookings/${bookingId}/cancel`,
         { method: "POST" }
       );
 

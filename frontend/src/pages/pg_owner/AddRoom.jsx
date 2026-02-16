@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import "./styles/PostPGs.css";
 import Button from "../../components/Button";
+import BASE_URL from "../../api";
 
 function AddRoom() {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ function AddRoom() {
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/pgowner/pg/${pgId}/rooms`,
+        `${BASE_URL}/pgowner/pg/${pgId}/rooms`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

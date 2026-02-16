@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./styles/PostPGs.css";
 import toast from "react-hot-toast";
 import Button from "../../components/Button";
+import BASE_URL from "../../api";
 
 function EditPG() {
   const { id } = useParams();
@@ -32,9 +33,8 @@ function EditPG() {
 
     async function fetchPG() {
       try {
-        // ✅ CORRECT ENDPOINT (your backend)
         const res = await fetch(
-          `http://127.0.0.1:8000/pgowner/pgs/${id}`
+          `${BASE_URL}/pgowner/pgs/${id}`
         );
 
         const data = await res.json();
@@ -87,9 +87,8 @@ function EditPG() {
         };
 
     try {
-      // ✅ CORRECT UPDATE ENDPOINT
       const res = await fetch(
-        `http://127.0.0.1:8000/pgowner/update-pg/${id}`,
+        `${BASE_URL}/pgowner/update-pg/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -108,7 +107,6 @@ function EditPG() {
       toast.success("PG Updated successfully", { duration: 1800 });
 
       setTimeout(() => {
-        // ✅ Go back to PG Details (your new flow)
         navigate(`/owner/pg-details/${id}`);
       }, 1800);
     } catch (err) {

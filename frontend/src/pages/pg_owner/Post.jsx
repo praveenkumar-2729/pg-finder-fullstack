@@ -3,6 +3,7 @@ import "./styles/PostPGs.css";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
+import BASE_URL from "../../api";
 
 function Post() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ function Post() {
     };
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/pgowner/register-pg", {
+      const res = await fetch(`${BASE_URL}/pgowner/register-pg`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

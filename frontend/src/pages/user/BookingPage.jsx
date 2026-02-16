@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./styles/BookingPage.css";
 import toast from "react-hot-toast";
+import BASE_URL from "../../api";
 
 function BookingPage() {
   const { pgId, roomId } = useParams();
@@ -27,7 +28,7 @@ function BookingPage() {
 
   // ✅ Fetch Room Details
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/user/pgs/${pgId}`)
+    fetch(`${BASE_URL}/user/pgs/${pgId}`)
       .then(res => res.json())
       .then(data => {
         if (!data.rooms) return;
@@ -81,7 +82,7 @@ function BookingPage() {
           beds_booked: Number(bedsBooked),
         };
     
-        const res = await fetch("http://127.0.0.1:8000/bookings/", {
+        const res = await fetch(`${BASE_URL}/bookings/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(bookingData),

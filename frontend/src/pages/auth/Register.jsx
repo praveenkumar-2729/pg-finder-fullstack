@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import BASE_URL from "../../api";
 
 export default function Register() {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function Register() {
         setForm({ ...form, [e.target.name]: e.target.value });
 
     const handleRegister = async () => {
-        const res = await fetch("http://localhost:8000/auth/register", {
+        const res = await fetch(`${BASE_URL}/auth/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form),

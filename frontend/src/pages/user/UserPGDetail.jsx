@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./styles/UserPGDetails.css";
+import BASE_URL from "../../api";
 
 function UserPGDetail() {
   const { pgId } = useParams();
@@ -11,7 +12,7 @@ function UserPGDetail() {
 
   // 🔥 Fetch PG Details
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/user/pgs/${pgId}`)
+    fetch(`${BASE_URL}/user/pgs/${pgId}`)
       .then(res => res.json())
       .then(data => {
         setPg(data);

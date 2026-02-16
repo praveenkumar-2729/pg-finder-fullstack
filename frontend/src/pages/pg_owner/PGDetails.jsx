@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./styles/PGDetails.css";
 import toast from "react-hot-toast";
+import BASE_URL from "../../api";
 
 function PGDetails() {
   const { pgId } = useParams();
@@ -22,7 +23,7 @@ function PGDetails() {
     async function fetchData() {
       try {
         const pgRes = await fetch(
-          `http://127.0.0.1:8000/pgowner/pgs/${pgId}`
+          `${BASE_URL}/pgowner/pgs/${pgId}`
         );
 
         const pgData = await pgRes.json();
@@ -34,7 +35,7 @@ function PGDetails() {
         setPg(pgData);
 
         const roomRes = await fetch(
-          `http://127.0.0.1:8000/pgowner/pg/${pgId}/rooms`
+          `${BASE_URL}/pgowner/pg/${pgId}/rooms`
         );
 
         const roomData = await roomRes.json();
@@ -66,7 +67,7 @@ function PGDetails() {
     if (!window.confirm("Delete this PG?")) return;
 
     const res = await fetch(
-      `http://127.0.0.1:8000/pgowner/delete-pg/${pgId}`,
+      `${BASE_URL}/pgowner/delete-pg/${pgId}`,
       { method: "DELETE" }
     );
 
@@ -83,7 +84,7 @@ function PGDetails() {
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/pgowner/delete-room/${roomId}`,
+        `${BASE_URL}/pgowner/delete-room/${roomId}`,
         { method: "DELETE" }
       );
 

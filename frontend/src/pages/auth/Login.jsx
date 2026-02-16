@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import BASE_URL from "../../api";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleLogin = async () => {
-    const res = await fetch("http://localhost:8000/auth/login", {
+    const res = await fetch(`${BASE_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
