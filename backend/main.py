@@ -17,7 +17,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://YOUR-FRONTEND-URL.onrender.com"
+        "https://pg-finder-fullstack-2.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
