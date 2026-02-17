@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
 from sqlalchemy.orm import Session
 
 from database import get_db
@@ -12,9 +12,15 @@ from utils.email_utils import send_email
 router = APIRouter(prefix="/bookings", tags=["Bookings"])
 
 
-
+# ==========================
+# CREATE BOOKING
+# ==========================
 @router.post("/")
-def create_booking(data: BookingCreate, db: Session = Depends(get_db)):
+def create_booking(
+    data: BookingCreate,
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db)
+):
 
     # ---- Check PG ----
     pg = db.query(PG).filter(PG.id == data.pg_id).first()
@@ -36,7 +42,7 @@ def create_booking(data: BookingCreate, db: Session = Depends(get_db)):
             detail=f"Only {room.beds_available} beds available"
         )
 
-    # ---- Get real owner email ----
+    # ---- Get owner account ----
     owner_account = (
         db.query(Account)
         .filter(Account.id == pg.owner_id, Account.role == "owner")
@@ -48,7 +54,7 @@ def create_booking(data: BookingCreate, db: Session = Depends(get_db)):
 
     owner_email = owner_account.email
 
-    # ---- Reduce beds correctly ----
+    # ---- Reduce beds ----
     room.beds_available -= data.beds_booked
     room.booked_beds += data.beds_booked
 
@@ -68,10 +74,9 @@ def create_booking(data: BookingCreate, db: Session = Depends(get_db)):
         user_type=data.user_type,
         college_name=data.college_name if data.user_type == "student" else None,
         company_name=data.company_name if data.user_type == "employee" else None,
-        native_place=data.native_place if data.user_type == "other" else None,   
+        native_place=data.native_place if data.user_type == "other" else None,
 
         beds_booked=data.beds_booked,
-
         owner_email=owner_email,
         status="CONFIRMED"
     )
@@ -80,7 +85,7 @@ def create_booking(data: BookingCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_booking)
 
-    # ---- Email to owner ----
+    # ---- Email to owner (BACKGROUND) ----
     owner_html = f"""
     <h2>New PG Booking Received</h2>
     <p><b>PG:</b> {pg.name}</p>
@@ -92,9 +97,14 @@ def create_booking(data: BookingCreate, db: Session = Depends(get_db)):
     <p><b>User Type:</b> {data.user_type}</p>
     """
 
-    send_email(owner_email, "New PG Booking Received", owner_html)
+    background_tasks.add_task(
+        send_email,
+        owner_email,
+        "New PG Booking Received",
+        owner_html
+    )
 
-    # ---- Email to user ----
+    # ---- Email to user (BACKGROUND) ----
     user_html = f"""
     <h2>Booking Confirmed ✅</h2>
     <p>Hi <b>{data.user_name}</b>,</p>
@@ -104,7 +114,12 @@ def create_booking(data: BookingCreate, db: Session = Depends(get_db)):
     <p>The owner will contact you soon.</p>
     """
 
-    send_email(data.user_email, "Your PG Booking Confirmation", user_html)
+    background_tasks.add_task(
+        send_email,
+        data.user_email,
+        "Your PG Booking Confirmation",
+        user_html
+    )
 
     return {
         "message": "Booking confirmed",
@@ -113,7 +128,9 @@ def create_booking(data: BookingCreate, db: Session = Depends(get_db)):
     }
 
 
-
+# ==========================
+# GET USER BOOKINGS
+# ==========================
 @router.get("/user/{user_email}")
 def get_user_bookings(user_email: str, db: Session = Depends(get_db)):
 
@@ -145,21 +162,27 @@ def get_user_bookings(user_email: str, db: Session = Depends(get_db)):
     return bookings
 
 
-
+# ==========================
+# CANCEL BOOKING
+# ==========================
 @router.post("/{booking_id}/cancel")
-def cancel_booking(booking_id: int, db: Session = Depends(get_db)):
+def cancel_booking(
+    booking_id: int,
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db)
+):
 
     booking = db.query(Booking).filter(Booking.id == booking_id).first()
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
 
-    # ---- Restore beds correctly ----
+    # ---- Restore beds ----
     room = db.query(PGRoom).filter(PGRoom.id == booking.room_id).first()
     if room:
         room.beds_available += booking.beds_booked
         room.booked_beds -= booking.beds_booked
 
-    # ---- Get PG and Owner email ----
+    # ---- Get PG and owner ----
     pg = db.query(PG).filter(PG.id == booking.pg_id).first()
 
     owner_account = (
@@ -170,26 +193,31 @@ def cancel_booking(booking_id: int, db: Session = Depends(get_db)):
 
     owner_email = owner_account.email if owner_account else None
 
-    # ---- Email to OWNER ----
+    # ---- Email to OWNER (BACKGROUND) ----
     if owner_email:
         owner_html = f"""
         <h2>Booking Cancelled ❌</h2>
-        <p>The following booking has been cancelled:</p>
         <p><b>PG:</b> {pg.name}</p>
         <p><b>User:</b> {booking.user_name}</p>
         <p><b>Beds Restored:</b> {booking.beds_booked}</p>
         """
 
-        send_email(owner_email, "Booking Cancelled", owner_html)
+        background_tasks.add_task(
+            send_email,
+            owner_email,
+            "Booking Cancelled",
+            owner_html
+        )
 
-    # ---- Email to USER ----
+    # ---- Email to USER (BACKGROUND) ----
     user_html = f"""
     <h2>Booking Cancelled ❌</h2>
     <p>Hi <b>{booking.user_name}</b>,</p>
     <p>Your booking for <b>{pg.name}</b> has been cancelled.</p>
     """
 
-    send_email(
+    background_tasks.add_task(
+        send_email,
         booking.user_email,
         "Your Booking Cancellation",
         user_html
@@ -203,4 +231,3 @@ def cancel_booking(booking_id: int, db: Session = Depends(get_db)):
         "message": "Booking cancelled and beds restored",
         "restored_beds": room.beds_available if room else None
     }
-
