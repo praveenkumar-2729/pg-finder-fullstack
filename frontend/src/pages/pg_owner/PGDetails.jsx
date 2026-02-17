@@ -167,7 +167,6 @@ function PGDetails() {
           </span>
         </p>
 
-        <p><b>Status:</b> {pg.admin_status}</p>
 
 
         <div className="pg-actions-inline">

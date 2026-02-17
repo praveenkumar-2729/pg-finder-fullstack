@@ -111,7 +111,7 @@ function MyPGs() {
     </p>
 
     <p className="pg-detail">
-      <b>Status:</b> {pg.admin_status}
+      
     </p>
 
     <div className="pg-actions">

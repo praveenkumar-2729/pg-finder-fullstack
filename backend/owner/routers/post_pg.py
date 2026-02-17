@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from fastapi import BackgroundTasks
 from database import SessionLocal
 from owner.models.pg import PG
 from auth.models.account import Account
@@ -21,7 +21,11 @@ def get_db():
 
 
 @router.post("/register-pg")
-def register_pg(data: PGCreate, db: Session = Depends(get_db)):
+def register_pg(
+    data: PGCreate,
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db)
+):
 
     # 🔐 Verify owner
     owner = db.query(Account).filter(Account.id == data.owner_id).first()
@@ -45,16 +49,18 @@ def register_pg(data: PGCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_pg)
 
-    send_email(
-        to_email=owner.email,
-        subject="PG Registration Submitted",
-        html_content=f"""
-        <h2>PG Finder 🎉</h2>
-        <p>Hi <b>{owner.name}</b>,</p>
-        <p>Your PG <b>{new_pg.name}</b> is registered.</p>
-        <p>Status: <b>Pending Admin Approval</b></p>
-        """
-    )
+    background_tasks.add_task(
+       send_email,
+       to_email=owner.email,
+       subject="PG Registration Submitted",
+       html_content=f"""
+           <h2>PG Finder 🎉</h2>
+           <p>Hi <b>{owner.name}</b>,</p>
+           <p>Your PG <b>{new_pg.name}</b> is registered.</p>
+           <p>Status: <b>Pending Admin Approval</b></p>
+       """
+)
+
 
     return {
         "message": "PG registered successfully.",
